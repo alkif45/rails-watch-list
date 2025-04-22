@@ -1,0 +1,31 @@
+<div class="position-relative" style="height: 300px;">
+  <%= image_tag "popcorn.png", alt: "Banner", class: "w-100 h-100 object-fit-cover" %>
+  <h1 class="position-absolute top-50 start-50 translate-middle text-white fw-bold" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.6)">My lists</h1>
+</div>
+
+
+
+<div class="p-2">
+  <% @lists.each do |list| %>
+    <h2><%= list.name %></h2>
+
+    <div class="row">
+      <% list.bookmarks.each do |bookmark| %>
+        <div class="col-md-4">
+          <div class="card shadow-sm rounded overflow-hidden">
+            <%= image_tag bookmark.movie.poster_url, alt: "The movie poster", class: "card-img-top" %>
+          </div>
+          <h5 class="text-center card-title mt-3 mb-3">
+            <strong><%= bookmark.movie.title %></strong>
+            <span>• <%= bookmark.movie.rating %></span>
+          </h5>
+          <p class="text-muted"><%= bookmark.movie.overview %></p>
+          <div class="d-flex">
+            <i class="fas fa-quote-left me-3"></i>
+            <p><%= bookmark.comment %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
